@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity
-data class Task(var name: String, var dueDate: Date, var status: String) {
+data class Task(var name: String, var dueDate: String, var status: String) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
 }
