@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.text.InputType
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,10 +50,36 @@ class RecyclerViewTouchHelper(private var viewModel: MainActivityData, val recyc
             dialog.show()
         } else {
             val builder = AlertDialog.Builder(context)
-            builder.setTitle("Update Task")
+            builder.setTitle("Update your task")
+            builder.setMessage("Enter the task below:")
+
+            val linearLayout = LinearLayout(context)
+            linearLayout.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+
             val input = EditText(context)
             input.inputType = InputType.TYPE_CLASS_TEXT
-            builder.setView(input)
+
+            val layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+
+            val horizontalMargin = 50 // Adjust as needed
+            layoutParams.setMargins(horizontalMargin, 0, horizontalMargin, 0)
+            input.layoutParams = layoutParams
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val taskList = repository.getTasks()
+                input.setText(taskList[position].taskName)
+            }
+
+            // Add EditText to LinearLayout
+            linearLayout.addView(input)
+
+            builder.setView(linearLayout)
             builder.setPositiveButton("Yes") { dialog, which ->
                 val item = input.text.toString()
                 CoroutineScope(Dispatchers.IO).launch {

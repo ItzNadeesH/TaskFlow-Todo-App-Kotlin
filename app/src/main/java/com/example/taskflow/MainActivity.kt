@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -53,11 +54,31 @@ class MainActivity : AppCompatActivity() {
     }
     private fun displayDialog(repository: TaskRepository){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Enter Your New Task:")
-        builder.setMessage("Enter the todo item below:")
+        builder.setTitle("Your new task")
+        builder.setMessage("Enter the task below:")
+        // Create a LinearLayout to contain the EditText
+        val linearLayout = LinearLayout(this)
+        linearLayout.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
         val input = EditText(this)
         input.inputType = InputType.TYPE_CLASS_TEXT
-        builder.setView(input)
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+        val horizontalMargin = 50 // Adjust as needed
+        layoutParams.setMargins(horizontalMargin, 0, horizontalMargin, 0)
+        input.layoutParams = layoutParams
+
+        // Add EditText to LinearLayout
+        linearLayout.addView(input)
+
+        builder.setView(linearLayout)
         builder.setPositiveButton("OK") { dialog, which ->
             val item = input.text.toString()
             CoroutineScope(Dispatchers.IO).launch {
