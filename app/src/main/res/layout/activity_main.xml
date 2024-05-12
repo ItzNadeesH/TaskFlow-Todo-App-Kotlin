@@ -2,19 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#151515">
 
     <TextView
         android:id="@+id/tasksText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_black"
+        android:background="#0AB6AB"
+        android:fontFamily="@font/raleway_semibold"
+        android:padding="24dp"
         android:text="@string/tasks"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tasksText"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true" />
+        android:nestedScrollingEnabled="true"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,7 +39,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#0AB6AB"
         android:src="@drawable/ic_baseline_add_24" />
 
 </RelativeLayout>

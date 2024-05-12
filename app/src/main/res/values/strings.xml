@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TaskFlow</string>
-    <string name="tasks">All Tasks</string>
+    <string name="tasks">Todo List</string>
     <string name="new_task">New Task</string>
-    <string name="save">Save</string>
 </resources>
