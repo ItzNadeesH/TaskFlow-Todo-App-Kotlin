@@ -7,7 +7,7 @@ import com.example.taskflow.database.entities.Task
 
 class MainActivityData: ViewModel() {
     private val _data = MutableLiveData<List<Task>>()
-    val data: LiveData<List<Task>> = _data
+    var data: LiveData<List<Task>> = _data
     fun setData(data:List<Task>){
         _data.value = data
     }

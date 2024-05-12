@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskflow.R
 import com.example.taskflow.TaskViewHolder
 import com.example.taskflow.database.entities.Task
+import com.example.taskflow.database.repositories.TaskRepository
 
-class TaskAdapter(private val data: List<Task>): RecyclerView.Adapter<TaskViewHolder>() {
+class TaskAdapter(private val data: List<Task>, private val repository: TaskRepository): RecyclerView.Adapter<TaskViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         val view: View = layoutInflater.inflate(R.layout.task_layout, parent, false)
